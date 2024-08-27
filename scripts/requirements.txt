@@ -1,5 +1,5 @@
 opencv-python
 easyocr
 scenedetect
-whisper
+openai-whisper
 torch
