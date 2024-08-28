@@ -1,5 +1,3 @@
-package.json
-package-lock.json
 # Logs
 logs
 *.log
@@ -51,6 +49,10 @@ web_modules/
 
 # Optional npm cache directory
 .npm
+
+#Outputs
+output
+*.csv
 
 # Optional eslint cache
 .eslintcache
