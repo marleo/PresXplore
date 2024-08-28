@@ -1,0 +1,5 @@
+{
+    "mongo": {
+      "url": "mongodb://ovid1.itec.aau.at"
+    }
+}

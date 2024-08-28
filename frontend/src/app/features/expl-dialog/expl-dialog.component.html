@@ -1,0 +1,10 @@
+<div class="expl-dialog">
+    <div class="header">
+      <ng-content select="[header]"></ng-content>
+        <h3 *ngIf="title">{{title}}</h3>
+        <mat-icon id="close-icon" (click)="clickOnClose.emit($event)">close</mat-icon>
+    </div>
+    <div class="body">
+      <ng-content></ng-content>
+    </div>
+  </div>

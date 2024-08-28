@@ -1,0 +1,132 @@
+<div class="queryarea">
+  <div class="topBar">
+      <a routerLink="/query" (click)="reloadComponent()"><img class="logo" src="assets/diveXplore_.png"></a>
+      <div class="top-bar-left">
+      <div class="select-wrapper">
+        <select class="gray-background top-bar-select" [(ngModel)]="selectedDataset"
+          (change)="resetPageAndPerformQuery()">
+          <option *ngFor="let d of datasets" [ngValue]="d.id">{{d.name}}</option>
+        </select>
+        <select class="top-bar-select" [(ngModel)]="selectedVideoFiltering"
+          [ngClass]="{'light-red-background': selectedVideoFiltering === 'first', 'light-blue-background': selectedVideoFiltering !== 'first'}"
+          (change)="resetPageAndPerformQuery()">
+          <option *ngFor="let d of videoFiltering" [ngValue]="d.id">{{d.name}}</option>
+        </select>
+        <select class="top-bar-select" [(ngModel)]="selectedQueryType" (change)="resetPageAndPerformQuery()">
+          <option *ngFor="let d of this.getQueryTypes(this.selectedDataset)" [ngValue]="d.id">{{d.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="inputGroup">
+      <input class="inputField" type="text" id="queryinput" name="queryinput" ngModel #inputfield
+        [(ngModel)]="queryinput" (keyup.enter)="performNewTextQuery()" (focus)="onQueryInputFocus()"
+        (blur)="onQueryInputBlur()" placeholder="Input your query..." autofocus />
+    </div>
+    <button id="searchButton" class="basicButton" (click)="performNewTextQuery()">Search</button>
+    <div class="top-bar-right">
+      <button id="resetButton" class="basicButton" (click)="resetQuery()">Reset</button>
+      <button id="historyToggle" class="basicButton" (click)="showHistory()">History</button>
+      <button class="basicButton" id="helpButton" mat-icon-button (click)="showHelp()">
+        <mat-icon>help</mat-icon>
+      </button>
+      <button class="basicButton" id="configButton" mat-icon-button (click)="toggleConfigDialog()">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="configModalLabel"
+  aria-hidden="true" *ngIf="showConfigForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="configModalLabel">Configuration</h3>
+      </div>
+      <div class="modal-body">
+        <app-config-form (closeForm)="toggleConfigDialog()"></app-config-form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pagination">
+  <div class="empty"></div>
+  <div class="pagination-controls">
+    Pages:
+    <mat-button-toggle-group [(ngModel)]="selectedPage">
+      <mat-button-toggle *ngFor="let p of pages" [value]="p" (click)="performQuery()"
+        [disabled]="totalReturnedResults == 0">
+        {{p}}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <span class="resultcount">{{totalReturnedResults}} results</span>
+  </div>
+  <button id="newTab" class="basicButton" (click)="newTab()">+Tab</button>
+</div>
+<br />
+<div class="queryresults-wrapper">
+  <div class="backdrop" *ngIf="showPreview" (click)="closeVideoPreview()"></div>
+  <div *ngIf="showPreview" class="videopreview">
+    <div class="header-container">
+      <div class="preview-switch">
+        <button class="top-left-button" [class.active]="activeButton === 'image'" mat-icon-button matTooltip="Keyframe Preview" matTooltipPosition="above"
+          (click)="setContent('image')">
+          <mat-icon>crop_square</mat-icon>
+        </button>
+        <button class="top-left-button" [class.active]="activeButton === 'video'" mat-icon-button matTooltip="Video Preview" matTooltipPosition="above"
+          (click)="setContent('video')">
+          <mat-icon>videocam</mat-icon>
+        </button>
+      </div>
+      <button class="videosummaryheader" matTooltip="Go to Shotlist" matTooltipPosition="above"
+        (click)="showVideoShots(this.queryresult_videoid[this.selectedItem],this.queryresult_frame[this.selectedItem])">Video
+        {{this.queryresult_videoid[this.selectedItem]}}
+        ({{this.selectedItem+1}}/{{this.queryresult_videoid.length}})</button><br />
+        <button class="share-button" matTooltip="Share Keyframe" matTooltipPosition="above" mat-icon-button>
+          <mat-icon>share</mat-icon>
+        </button>
+        <button class="close-button" (click)="closeVideoPreview()" mat-icon-button>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="videopreview-content">
+      <img *ngIf="currentContent === 'image'" [src]="videoLargePreview" class="videopreviewimage"
+        (click)="closeVideoPreview()">
+      <div *ngIf="currentContent === 'video'" class="videopreviewimage">
+        <video #videopreview [src]="videoPlayPreview" controls></video>
+      </div>
+    </div>
+  </div>
+  <div (mouseover)="mouseOverShot(i)" (mouseleave)="mouseLeaveShot(i)" class="queryresult"
+    *ngFor="let item of displayQueryResult; let i = index">
+    <img [src]="constructedUrl(i, item)" width="{{imgWidth}}" height="{{imgHeight}}"
+      (click)="selectItemAndShowSummary(i,$event)"
+      [ngClass]="{'blueborder': this.selectedItem == i}">
+    <div class="lefttopcorner">
+      <span *ngIf="showButtons === i && this.queryresult_frame[i] !== 'summary'"
+        class="resultnum">{{getTimeInformationFor(i)}}</span>
+    </div>
+    <div class="righttopcorner">
+      <button class="smalllabel" (click)="this.queryForVideo(i)">{{this.queryresult_videoid[i]}}</button>
+    </div>
+    <div class="leftbottomcorner">
+      <button *ngIf="showButtons === i" (click)="showVideoShots(this.queryresult_videoid[i],this.queryresult_frame[i])"
+        class="resultaction shotbutton">Shots</button>
+      <button *ngIf="showButtons == i" (click)="performFileSimilarityQuery(item)" class="resultaction similarbutton">Similar</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="nodeServerInfo !== undefined" class="full-message">
+  {{nodeServerInfo}}
+  <button (click)="nodeServerInfo = undefined">Close</button>
+</div>
+
+<app-help-section *ngIf="showHelpActive" (clickOnClose)="showHelpActive = false"></app-help-section>
+<app-history-dialog *ngIf="showHistoryActive" (clickOnClose)="showHistoryActive = false"
+  (historySelected)="performHistoryQuery($event)"></app-history-dialog>
+<app-message-bar></app-message-bar>
+<app-status-bar (answerFieldFocusChange)="handleAnswerFieldFocusChange($event)"></app-status-bar>
+
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;

@@ -1,0 +1,251 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: rgba(220,220,220,1); 
+}
+
+button, select {
+    font-size: 18px;
+    height: 32px;
+}
+
+div.queryarea, div.footerinfo {
+    background-color: rgba(29,30,33,1);// darkgray;//darkcyan;
+    padding: 8px;
+    color: white;
+    //float: left;
+}
+
+div.footerinfo {
+    width: 100%;
+}
+
+div.footerinfo a {
+    color: white;
+}
+
+img.logo {
+    padding-right: 4px;
+    vertical-align: top;
+}
+
+span.headertitle {
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 20px;
+    background-color: rgba(255,255,255,0.8);
+    padding: 6px;
+    color: black;
+    font-size: 16pt;
+}
+
+span.headerinfo {
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 30px;
+    padding: 6px;
+    color: white;
+    font-size: 16pt;
+}
+
+span.headerdescription {
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 30px;
+    font-size: 12pt;
+}
+
+span.keyword {
+    padding: 4px;
+}
+
+span.headerkeyword {
+    margin-left: 20px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+div.shotlist {
+    position: relative;
+    display:inline;
+}
+
+.queryarea select {
+    margin-top: 15px;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+.queryresult {
+    margin: 4px;
+    position: relative;
+    float: left;
+}
+
+.queryresults-wrapper {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.queryresults-wrapper::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+
+.selectedqueryresult {
+    background-color: blue;
+    margin: 4px;
+    position: relative;
+    float: left;
+    outline-width: 4px;
+    outline-style: solid;
+    outline-color: darkblue;
+}
+
+.headerlabel {
+    padding: 6px;
+    color: gray;
+    font-size: 16pt;
+}
+
+.label {
+    background-color: rgba(255,255,255,0.8);
+    padding: 2px;
+}
+
+.smalllabel {
+    background-color: rgba(255,255,255,0.8);
+    font-size: 10pt;
+    padding: 0;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin: 0;
+}
+
+.label a {
+    color: black;
+}
+
+.label a:visited {
+    color: gray;
+}
+
+.righttopcorner {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.lefttopcorner {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.leftbottomcorner {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.rightbottomcorner {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.resultnum {
+    background-color: rgba(255,255,255,0.4);
+}
+
+.resultaction {
+    background-color: rgba(255,255,255,0.4);
+    color: black;
+    padding: 2px;
+}
+
+.submitbutton {
+    //background-color: rgba(0,139,139,0.8);
+    background-color: rgba(0,110,0,0.8);
+    font-size: 16px;
+    color: white;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 2px;
+}
+
+/*.statusbar {
+    position: absolute;
+    background-color: rgba(73,76,84,1); //lightgray;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: lightgray;
+}*/
+
+.statusbar {
+    position: fixed;
+    width: 100%;
+    background-color: rgba(73,76,84,1); //lightgray;
+    left: 0;
+    bottom: 0;
+    color: lightgray;
+    overflow: auto;
+}
+
+
+.minispacer {
+    margin-right: 5%;
+}
+
+.topicanswerbutton {
+    background-color: rgba(0,110,0,0.8);
+    color: white;
+    padding: 2px;
+    width: 72px;
+}
+
+.tinyspacer {
+    margin-right: 2.5%;
+}
+
+button[class='disconnected'], .loginerror {
+    background-color: red;
+    color: white;
+}
+
+button[class='connected'] {
+    background-color: green;
+    color: white;
+}
+
+span[class='disconnected'] {
+    margin: 2px;
+    padding: 4px;
+    background-color: red;
+    color: white;
+}
+
+span[class='connected'] {
+    margin: 2px;
+    padding: 4px;
+    background-color: green;
+    color: white;
+}
+
+span.help {
+    float: right;
+    padding: 6px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

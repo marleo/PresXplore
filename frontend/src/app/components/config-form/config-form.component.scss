@@ -1,0 +1,105 @@
+$form-background: #f7f7f7;
+$input-border-radius: 6px;
+$button-border-radius: 6px;
+$button-padding: 10px 20px;
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$danger-color: #dc3545;
+$success-color: #28a745;
+$text-color: #333;
+
+.heading {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 20px;
+    position: relative;
+  
+    &::after {
+        content: '';
+        display: block;
+        margin: 10px auto 0;
+        width: 50px;
+        height: 2px;
+        background-color: $primary-color;
+    }
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+  
+    label {
+        font-weight: 600;
+        color: $text-color;
+    }
+    
+    input[type="text"] {
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: $input-border-radius;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      
+        &:focus {
+            border-color: $primary-color;
+            box-shadow: 0 0 5px rgba($primary-color, 0.5);
+        }
+    }
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 600;
+        padding: $button-padding;
+        border-radius: $button-border-radius;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        line-height: 1; /* Ensure vertical centering */
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    .cancel-button {
+        background-color: $danger-color;
+        color: white;
+        margin-right: 10px;
+
+        &:hover {
+            background-color: darken($danger-color, 10%);
+        }
+    }
+
+    .save-button {
+        background-color: $success-color;
+        color: white;
+
+        &:hover {
+            background-color: darken($success-color, 10%);
+        }
+    }
+}
+
+form {
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+}

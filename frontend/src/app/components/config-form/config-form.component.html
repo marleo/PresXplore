@@ -1,0 +1,47 @@
+<form [formGroup]="configForm" (keydown.enter)="onSave()" (ngSubmit)="onSave()">
+    <div class="form-row">
+      <label for="clipServerHost">Clip Server Host:</label>
+      <input id="clipServerHost" type="text" size="40" formControlName="config_CLIP_SERVER_HOST">
+    </div>
+    <div class="form-row">
+      <label for="clipServerPort">Clip Server Port:</label>
+      <input id="clipServerPort" type="text" size="10" formControlName="config_CLIP_SERVER_PORT">
+    </div>
+    <br/>
+    <div class="form-row">
+      <label for="nodeServerHost">Node Server Host:</label>
+      <input id="nodeServerHost" type="text" size="40" formControlName="config_NODE_SERVER_HOST">
+    </div>
+    <div class="form-row">
+      <label for="nodeServerPort">Node Server Port:</label>
+      <input id="nodeServerPort" type="text" size="10" formControlName="config_NODE_SERVER_PORT">
+    </div>
+    <br/>
+    <div class="form-row">
+        <label for="dataBaseUrl">Images Base URL:</label>
+        <input id="dataBaseUrl" type="text" size="40" formControlName="config_DATA_BASE_URL">
+      </div>
+    <br/>
+      <div class="form-row">
+        <label for="dataBaseUrlVideos">Videos Base URL:</label>
+        <input id="dataBaseUrlVideos" type="text" size="40" formControlName="config_DATA_BASE_URL_VIDEOS">
+      </div>
+    <br/>
+      <div class="form-row">
+        <label for="resultsPerPage">Results per page:</label>
+        <input id="resultsPerPage" type="text" size="6" formControlName="config_RESULTS_PER_PAGE">
+      </div>
+      <div class="form-row">
+        <label for="maxResultsToReturn">Total results:</label>
+        <input id="maxResultsToReturn" type="text" size="6" formControlName="config_MAX_RESULTS_TO_RETURN">
+      </div>
+      <div class="form-row">
+        <label for="imageWidth">Thumb width (px):</label>
+        <input id="imageWidth" type="text" size="6" formControlName="config_IMAGE_WIDTH">
+      </div>
+      <div class="button-container">
+        <button class="cancel-button" (click)="this.closeForm.emit()">Cancel</button>
+        <button class="save-button" type="submit">Save</button>
+      </div>
+  </form>
+  

@@ -1,0 +1,43 @@
+
+  .modal-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .search-filter-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .filterInput, select {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 32%;
+    height: auto;
+    box-sizing: border-box;
+  }
+
+  ul {
+    list-style-type: none; /* Removes the bullets */
+    padding: 0;
+  }
+  
+  li {
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+  li:hover {
+    background-color: #f9f9f9;
+  }
+  
+  li:first-child {
+    margin-top: 0;
+  }
+  

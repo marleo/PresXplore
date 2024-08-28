@@ -1,0 +1,24 @@
+.message-bar-error {
+    position: fixed;
+    bottom: 50px;  
+    left: 0;     
+    width: 50%;    
+    color: white;
+    text-align: center;
+    padding: 10px;
+    background-color: #c23737;
+    box-sizing: border-box; 
+}
+
+.message-bar-success {
+    position: fixed;
+    bottom: 50px;     
+    right: 0;         
+    left: 50%;      
+    width: 50%;        
+    color: white;
+    text-align: center;
+    padding: 10px;
+    background-color: #2b7b3b;
+    box-sizing: border-box; 
+}

@@ -1,0 +1,18 @@
+<expl-dialog class="modal-box" title="History" (clickOnClose)="clickOnClose.emit($event)">
+    <div class="modal-wrapper">
+    <div class="search-filter-container">
+        <input class="filterInput" type="text" [(ngModel)]="searchTerm" placeholder="Search queries..." (input)="filterList()" (focus)="onInputFocus()" (blur)="onInputBlur()">
+        <select [(ngModel)]="filterType" (change)="filterList()">
+            <option value="">All Types</option>
+            <option *ngFor="let type of uniqueTypes" [value]="type">{{ type }}</option>
+        </select>
+        <select [(ngModel)]="filterDataset" (change)="filterList()">
+            <option value="">All Datasets</option>
+            <option *ngFor="let type of uniqueDataset" [value]="type">{{ type }}</option>
+        </select>
+    </div>
+    <ul>
+        <li *ngFor="let item of displayHistory; let i = index" (click)="onHistoryItemClick(filteredHistory[i])" [innerHTML]="item"></li>
+    </ul>
+</div>
+</expl-dialog>

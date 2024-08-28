@@ -1,0 +1,58 @@
+<div class="queryarea">
+    <a routerLink="/query"><img class="logo" src="assets/diveXplore_.png"></a>
+    <span class="headertitle">{{videoid}} ({{keyframes.length}} shots)</span>
+    <span *ngIf="this.hasMetadata()" class="videometainfo">
+        <span class="headerlabel">{{asTimeLabel(vduration.toString(),false)}}</span>
+        <span class="headerlabel">{{fps}} fps</span>
+        <span class="headerlabel">{{vduration}} secs</span>
+    </span>
+</div>
+
+<div class="videobox" *ngIf="showVideoBox">
+    <div class="videoboxheader">
+        <ng-template #simplemetadata>
+            <span class="headerlabel">{{fps}} fps</span>
+        </ng-template>
+        <button class="hidevideobox" (click)="hideVideoBox()">Hide</button>
+    </div>
+    <video #videoplayer [src]='videoURL' (timeupdate)="setCurrentTime($event)" width="480" height="270"
+        controls></video>
+</div>
+
+<div class="queryresults-wrapper">
+
+    <div (mouseover)="showButtons = i" (mouseleave)="showButtons = -1"
+        class="{{getQueryResultCSSClass(this.framenumbers[i])}}" *ngFor="let item of keyframes; let i = index"
+        #queryResult>
+        <img [src]='sanitizeUrl(keyframeBaseURL+ "/" + item)' width="{{imgWidth}}" height="{{imgHeight}}" (click)="gotoTimeOfShot(i)">
+        <div class="lefttopcorner">
+            <span class="label">{{timelabels[i]}}</span>
+        </div>
+        <div class="leftbottomcorner">
+            <button *ngIf="showButtons === i" (click)="performFileSimilarityQuery(item)"
+                class="resultaction similarbutton">Similar</button>
+        </div>
+    </div>
+
+</div>
+
+<div class="footerinfo" *ngIf="this.hasMetadata()">
+    <span class="videometainfo">
+        <span *ngIf="vtexts.length > 0">
+            <h3 class="videoheader">Detected Text</h3>
+            <span class="keyword">{{vtexts}}</span>
+        </span>
+        <span *ngIf="vspeech">
+            <h3 class="videoheader">Detected Speech</h3>
+            <span class="keyword">{{vspeech}}</span>
+        </span>
+    </span>
+</div>
+
+<app-message-bar></app-message-bar>
+
+<app-status-bar></app-status-bar>
+
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
