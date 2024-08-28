@@ -1,6 +1,6 @@
 import os
 import subprocess
-import argparse
+import sys
 import shutil
 
 def run_script(command):
@@ -68,18 +68,9 @@ def main(video_path, output_dir):
     clean_up_directories(frames_folder, ocr_folder)
 
 if __name__ == "__main__":
-    # Argument parsing
-    parser = argparse.ArgumentParser(description="Process videos with scene detection, text recognition, and speech recognition.")
-    
-    # Add arguments for each required parameter
-    parser.add_argument("--video_path", type=str, required=True, help="Path to the folder containing the video files.")
-    parser.add_argument("--output_dir", type=str, required=True, help="Directory to save extracted frames.")
-
-    # Parse the arguments
-    args = parser.parse_args()
-
-    # Call the main function with the parsed arguments
-    main(
-        video_path=args.video_path,
-        output_dir=args.output_dir
-    )
+    if len(sys.argv) != 3:
+        print("Usage: python3 master_script.py <video_path> <output_dir>")
+    else:
+        video_path = sys.argv[1]
+        output_dir = sys.argv[2]
+        main(video_path, output_dir)

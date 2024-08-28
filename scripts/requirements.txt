@@ -3,3 +3,5 @@ easyocr
 scenedetect
 openai-whisper
 torch
+pandas
+pymongo
