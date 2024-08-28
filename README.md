@@ -15,10 +15,10 @@ This project is open-source under the GPL license and welcomes contributions fro
 
 ```bash
 cd backend/scripts
-# python3 -m venv env
-python3 setup.py # installing dependencies
-python3 process_videos.py <video_folder_path> <output_folder_path>
-python3 insert_into_db.py --videopath <video_folder_path> --ocr <ocr_folder_path (created by process_videos.py)> --speech <speech_folder_path (created by process_videos.py)>
+#python3 -m venv env
+python3 setup.py # nstalling dependencies
+python3 process_videos.py <video_folder_path> <output_folder_path> #perform OCR and ASR recognition, as well as shot-detection
+python3 insert_into_db.py --videopath <video_folder_path> --ocr <ocr_folder_path (created by process_videos.py)> --speech <speech_folder_path (created by process_videos.py)> #Insert the generated csv's into a MongoDB (has to be started beforehand)
 ```
 
 ## Starting backend/frontend
@@ -28,7 +28,7 @@ Backend:
 1. Start the FAISS server:
 ```bash
 cd backend/scripts
-python3 host_faiss <keyframe_folder_path> <indexfile_name>
+python3 host_faiss <keyframe_folder_path> <indexfile_name> #generate and host the FAISS index
 ``` 
 3. Create local-config.ts in backend root folder. (Refer to the local-config-example.ts for guidance)
 4. Start the backend:
