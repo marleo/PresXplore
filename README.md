@@ -1,6 +1,6 @@
 # PresXplore
 
-ESOPXplore is a lecture video retrieval tool consiting of a suite of scripts for preprocessing videos, two servers to host a FAISS index as well as a NodeJS server and a Angular frontend. 
+PresXplore is a lecture video retrieval tool consiting of a suite of scripts for preprocessing videos, two servers to host a FAISS index as well as a NodeJS server and a Angular frontend. 
 This project is open-source under the GPL license and welcomes contributions from the community.
 
 ![Screen_QueryResults](https://github.com/user-attachments/assets/108c83da-5250-4226-9270-0e525cebd0a4)
@@ -13,38 +13,39 @@ This project is open-source under the GPL license and welcomes contributions fro
 
 ## Preprocessing/Keyframe extraction
 
-TODO
-
-## Installation
-To install and use ESOPXplore, follow these steps:
-
-1. Clone the repository
 ```bash
-git clone https://github.com/marleo/ESOPXplore.git
+cd backend/scripts
+# python3 -m venv env
+python3 setup.py # installing dependencies
+python3 process_videos.py <video_folder_path> <output_folder_path>
+python3 insert_into_db.py --videopath <video_folder_path> --ocr <ocr_folder_path (created by process_videos.py)> --speech <speech_folder_path (created by process_videos.py)>
 ```
-2. Install required dependencies and execute the scripts
+
+## Starting backend/frontend
+To start the backend & frontend, follow these steps:
+
+Backend:
+1. Start the FAISS server:
 ```bash
-cd scripts
-# Create new environment: python3 -m venv env
-python3 setup.py
-python3 master_script.py
-```
-2. Navigate to the backend and start the FAISS and node server
+cd backend/scripts
+python3 host_faiss <keyframe_folder_path> <indexfile_name>
+``` 
+3. Create local-config.ts (in backend root folder)
+4. Start the backend:
 ```bash
-cd ESOPXplore_server/ESOPXplore_node
+cd backend
+npm i
 npm start
 ```
 
+Frontend:
+1. Create local-config.ts (located in frontend/src/app/shared/config)
+2. Start the frontend:
 ```bash
-cd ESOPXplore_server/ESOPXplore_faiss
-python3 makeIndexVBSopenclip.py {keyframe_root_directory} {faiss_csv_directory}
-```
-3. Navigate to the frontend directory and start it
-```bash
-cd ESOPXplore
+cd frontend
+npm i
 ng serve
 ```
-
 ## Contributing 
 All contributions are welcome! To contribute:
 
