@@ -22,16 +22,14 @@ python3 insert_into_db.py --videopath <video_folder_path> --ocr <ocr_folder_path
 ```
 
 ## Starting backend/frontend 🚀
-To start the backend & frontend, follow these steps:
-
 Backend:
 1. Start the FAISS server:
 ```bash
 cd backend/scripts
 python3 host_faiss <keyframe_folder_path> <indexfile_name> #generate and host the FAISS index
 ``` 
-3. Create local-config.ts in backend root folder. (Refer to the local-config-example.ts for guidance)
-4. Start the backend:
+2. Create local-config.ts in backend root folder. (Refer to the local-config-example.ts for guidance)
+3. Start the backend:
 ```bash
 cd backend
 npm i
