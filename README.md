@@ -46,6 +46,12 @@ cd frontend
 npm i
 ng serve
 ```
+
+Additionally, you need to host the keyframes to display them in the frontend. A simple solution if you want to host them locally is to simply use python:
+```bash
+python3 -m http.server
+```
+
 ## Contributing 
 All contributions are welcome! To contribute:
 
