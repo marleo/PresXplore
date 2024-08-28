@@ -10,6 +10,11 @@ This project is open-source under the GPL license and welcomes contributions fro
 - Extract text and speech from the keyframes/video and store them in a MongoDB.
 - Intuitive Frontend to retrieve video segments/keyframes from certain lectures.
   - You can choose between different query types, depending on your needs (Query for text, speech, videoid, similar keyframes)
+ 
+## Prerequisites 📋
+- Ensure you have Python 3.x installed.
+- Videos have to be in a folder and in the .mp4 format.
+- Be sure to install necessary libraries and tools. (should be handled by _setup.py_)
 
 ## Preprocessing/Keyframe extraction 🎥
 
