@@ -7,7 +7,7 @@ import sys
 import glob
 import csv
 
-imsuffix = 'png'
+imsuffix = 'jpg'
 if len(sys.argv) < 3:
     print("please specify <folder with images> and <result-filename-no-suffix> [<image-suffix]")
     exit(1)

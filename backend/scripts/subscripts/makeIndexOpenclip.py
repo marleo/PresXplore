@@ -30,7 +30,6 @@ def filterAndLabelResults(I, D, resultsPerPage, selectedPage):
     kfscores = []
     ifrom = (selectedPage - 1) * resultsPerPage
     ito = selectedPage * resultsPerPage
-    #for idx in I[0]:
     print(f'from:{ifrom} to:{ito}')
     for i in range(ifrom,ito):
         idx = I[0][i]
@@ -79,7 +78,6 @@ async def handler(websocket):
                     kfresults, kfresultsidx, kfscores = filterAndLabelResults(I, D, resultsPerPage, selectedPage)
                     results = {'num':len(kfresults), 'clientId':clientId, 'totalresults':k, 'results':kfresults, 'resultsidx':kfresultsidx, 'dataset':'v3c', 'scores':kfscores }
                     tmp = json.dumps(results)
-                    #print(tmp)
                     await websocket.send(tmp)
     except ConnectionClosedOK:
         print("Connection closed gracefully.")
