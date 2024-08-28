@@ -1,4 +1,4 @@
-# ESOPXplore
+# PresXplore
 
 ESOPXplore is a lecture video retrieval tool consiting of a suite of scripts for preprocessing videos, two servers to host a FAISS index as well as a NodeJS server and a Angular frontend. 
 This project is open-source under the GPL license and welcomes contributions from the community.
