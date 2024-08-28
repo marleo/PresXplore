@@ -1,8 +1,8 @@
 import subprocess
 import sys
 import time
+import glob
 
-# Function to run the FAISS extraction script
 def run_faiss_extraction(image_folder, output_file, image_suffix="jpg"):
     print("Starting FAISS extraction...")
     faiss_command = ["python3", "subscripts/extract_faiss.py", image_folder, output_file, image_suffix]
@@ -14,32 +14,30 @@ def run_faiss_extraction(image_folder, output_file, image_suffix="jpg"):
     print("FAISS extraction completed successfully.")
 
 # Function to run the Node.js server
-def start_nodejs_server(keyframe_base_root, csv_file):
+def start_nodejs_server(image_folder, csv_file):
     print("Starting Node.js server...")
-    node_command = ["python3", "subscripts/makeIndexOpenclip.py", keyframe_base_root, csv_file]
+    node_command = ["python3", "subscripts/makeIndexOpenclip.py", image_folder, csv_file]
     process = subprocess.Popen(node_command)
     return process
 
 if __name__ == "__main__":
-    if len(sys.argv) < 4:
-        print("Usage: python3 host_faiss.py <image_folder> <output_file> <keyframe_base_root> [image_suffix]")
+    if len(sys.argv) < 3:
+        print("Usage: python3 host_faiss.py <keyframe_folder> <output_name> [image_suffix]")
         sys.exit(1)
     
-    # Get command-line arguments
     image_folder = sys.argv[1]
     output_file = sys.argv[2]
-    keyframe_base_root = sys.argv[3]
-    image_suffix = sys.argv[4] if len(sys.argv) > 4 else "jpg"
+    image_suffix = sys.argv[3] if len(sys.argv) > 3 else "jpg"
     
-    # Step 1: Run FAISS extraction
     run_faiss_extraction(image_folder, output_file, image_suffix)
     
-    # Step 2: Start the Node.js server
-    server_process = start_nodejs_server(keyframe_base_root, output_file)
+    csv_file = glob.glob("*openclip*.csv")[0]
+
+    server_process = start_nodejs_server(image_folder, csv_file)
     
     try:
         while True:
-            time.sleep(10)  # Keep the script alive while the server is running
+            time.sleep(10) 
     except KeyboardInterrupt:
         print("Shutting down server...")
         server_process.terminate()

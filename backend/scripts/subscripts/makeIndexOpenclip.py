@@ -70,7 +70,6 @@ async def handler(websocket):
                         image_features = model.encode_image(image)
                         image_features = image_features.cpu()
                         print('shape:',image_features.shape)
-                        mylist = image_features[0].tolist()
                         print('features extracted')
                         D, I = search(image_features, k)
                         print('file-similarity search finished')

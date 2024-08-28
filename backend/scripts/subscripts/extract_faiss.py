@@ -23,8 +23,9 @@ modelweights = 'laion2b_s32b_b79k' #'laion400m_e32' #'laion2b_s39b_b160k' #'laio
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model, _, preprocess = open_clip.create_model_and_transforms(modelname, pretrained=modelweights, device=device)
 
+filename = sys.argv[2].split('/')[-1]
  
-csvfile = open(f'openclip-{sys.argv[2]}-{modelname}_{modelweights}.csv','w')
+csvfile = open(f'openclip-{filename}-{modelname}_{modelweights}.csv','w')
 writer = csv.writer(csvfile, delimiter=',')
 
 for filename in glob.iglob(rootdir + f'**/*.{imsuffix}', recursive=True):
