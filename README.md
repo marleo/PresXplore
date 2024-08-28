@@ -22,7 +22,7 @@ python3 insert_into_db.py --videopath <video_folder_path> --ocr <ocr_folder_path
 ```
 
 ## Starting backend/frontend 🚀
-Backend:
+**Backend:**
 1. Start the FAISS server:
 ```bash
 cd backend/scripts
@@ -36,7 +36,7 @@ npm i
 npm start
 ```
 
-Frontend:
+**Frontend:**
 1. Create local-config.ts located in frontend/src/app/shared/config. (Refer to the local-config-example.ts for guidance)
 2. Start the frontend:
 ```bash
