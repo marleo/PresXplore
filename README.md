@@ -30,7 +30,7 @@ Backend:
 cd backend/scripts
 python3 host_faiss <keyframe_folder_path> <indexfile_name>
 ``` 
-3. Create local-config.ts (in backend root folder)
+3. Create local-config.ts in backend root folder. (Refer to the local-config-example.ts for guidance)
 4. Start the backend:
 ```bash
 cd backend
@@ -39,7 +39,7 @@ npm start
 ```
 
 Frontend:
-1. Create local-config.ts (located in frontend/src/app/shared/config)
+1. Create local-config.ts located in frontend/src/app/shared/config. (Refer to the local-config-example.ts for guidance)
 2. Start the frontend:
 ```bash
 cd frontend
