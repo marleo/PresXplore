@@ -11,8 +11,6 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { ShotlistComponent } from './components/shotlist/shotlist.component';
-import { ApiModule, Configuration } from 'openapi/dres';
-import { GlobalConstants } from './shared/config/global-constants';
 import { HttpClientModule } from '@angular/common/http';
 import { QueryComponent } from './components/query/query.component';
 

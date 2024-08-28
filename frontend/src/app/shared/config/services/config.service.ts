@@ -29,8 +29,6 @@ export class ConfigService {
       config_NODE_SERVER_PORT: LocalConfig.config_NODE_SERVER_PORT,
       config_DATA_BASE_URL: LocalConfig.config_DATA_BASE_URL,
       config_DATA_BASE_URL_VIDEOS: LocalConfig.config_DATA_BASE_URL_VIDEOS,
-      config_USER: LocalConfig.config_USER,
-      config_PASS: LocalConfig.config_PASS,
       config_RESULTS_PER_PAGE: 35,
       config_MAX_RESULTS_TO_RETURN: 35 * 40,
       config_IMAGE_WIDTH: 236,
