@@ -5,3 +5,6 @@ openai-whisper
 torch
 pandas
 pymongo
+open-clip-torch
+faiss-cpu
+websockets
