@@ -10,3 +10,6 @@ __pycache__/
 
 # Ignore log files
 *.log
+
+*.jpeg
+*.jpg
