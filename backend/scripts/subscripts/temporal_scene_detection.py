@@ -38,4 +38,4 @@ if __name__ == "__main__":
     else:
         video_path = sys.argv[1]
         output_path = sys.argv[2]
-        extract_frames(video_path, output_path, time_interval=5)
+        extract_frames(video_path, output_path, time_interval=2)
