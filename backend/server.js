@@ -148,10 +148,6 @@ wss.on("connection", (ws) => {
                   clipQueries.push(tmpClipQuery);
                 }
               } while (idxS > -1);
-              console.log("found " + clipQueries.length + " temporal queries:");
-              for (let i = 0; i < clipQueries.length; i++) {
-                console.log(clipQueries[i]);
-              }
             }
 
             if (clipQueries.length > 0) {
@@ -179,7 +175,7 @@ wss.on("connection", (ws) => {
   ws.on("close", function close() {
     console.log("client disconnected");
     clients.delete(clientId);
-    mongoclient.close();
+    settingsMap.delete(clientId);
   });
 });
 
@@ -273,8 +269,6 @@ function handleCLIPResponse(message) {
   clientId = msg.clientId;
   clientWS = clients.get(clientId);
   let clientSettings = settingsMap.get(clientId);
-
-  console.log("received %s results from CLIP server", msg.num);
 
     let filteredResults = Array();
     let filteredResultsIdx = Array();
@@ -416,9 +410,6 @@ async function queryText(clientId, queryInput) {
 
     words = words.map((word) => word.toLowerCase());
 
-    console.log(
-      console.log("received from client: %s (%s)", queryInput, clientId)
-    );
 
     if (words.length === 1) {
       const cursor = collection.find({
@@ -430,9 +421,7 @@ async function queryText(clientId, queryInput) {
 
       let framesSet = new Set();
       documents.forEach((doc) => {
-        console.log("Processing document:", doc);
         doc.frames.forEach((frame) => {
-          console.log("Adding frame to set:", frame);
           framesSet.add(frame);
         });
       });
