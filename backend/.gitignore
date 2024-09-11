@@ -119,6 +119,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 local-config.js
+local-config-example.js
 lscqueryserverlog.json
-
+*.jpg
+*.mp4
 *log.json
