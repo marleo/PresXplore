@@ -5,11 +5,6 @@ const fs = require("fs");
 
 const { v4: uuidv4 } = require("uuid");
 
-const LOGFILE = "vbsqueryserverlog.json";
-
-const DISTINCTIVE_L2DIST1 = 10.0;
-const DISTINCTIVE_L2DIST2 = 15.0;
-
 const CLIPSERVERURL = "ws://" + config.config_CLIP_SERVER;
 console.log(CLIPSERVERURL);
 
@@ -77,11 +72,6 @@ wss.on("connection", (ws) => {
   ws.on("message", (message) => {
     console.log("received from client: %s (%s)", message, clientId);
     msg = JSON.parse(message);
-    fs.appendFile(LOGFILE, JSON.stringify(msg), function (err) {
-      if (err) {
-        console.log("Error writing file", err);
-      }
-    });
 
     videoFiltering = msg.content.videofiltering;
     clientSettings.videoFiltering = videoFiltering;
@@ -304,13 +294,7 @@ function handleCLIPResponse(message) {
     console.log(JSON.stringify(msg));
     clientWS.send(JSON.stringify(msg));
 
-    // Append jsonString to the file
     msg.clientId = clientId;
-    fs.appendFile(LOGFILE, JSON.stringify(msg), function (err) {
-      if (err) {
-        console.log("Error writing file", err);
-      }
-    });
 }
 
 //////////////////////////////////////////////////////////////////
